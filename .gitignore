@@ -3,6 +3,8 @@
 
 # PyCharm
 .idea/
+.idea
+/.idea
 
 # Environments
 .env
