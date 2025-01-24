@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "testbotfastapiaiogram"
+version = "0.1.0"
+description = ""
+authors = ["Владислав Суворов <gordik_08@mail.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.115.6"
+aiogram = "^3.17.0"
+pydantic-settings = "^2.7.1"
+sqlalchemy = "^2.0.37"
+alembic = "^1.14.1"
+asyncpg = "^0.30.0"
+uvicorn = "^0.34.0"
+aiohttp = "^3.11.11"
+apscheduler = "^3.11.0"
+fastapi-cache2 = {extras = ["redis"], version = "^0.2.2"}
+python-dotenv = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

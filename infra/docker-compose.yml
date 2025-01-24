@@ -1,0 +1,45 @@
+volumes:
+  postgres_data:
+  redis_data:
+
+services:
+  database:
+    container_name: postgres_container
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    restart: always
+
+  redis:
+    image: redis:latest
+    container_name: redis_container
+    volumes:
+      - redis_data:/data
+#    ports:
+#      - "6379:6379"
+
+  backend:
+    container_name: fastapi_container
+    build: ../
+    depends_on:
+      - database
+    ports:
+      - "80:80"
+#    volumes:
+#      - backend_static:/winrussia/app/static
+#    volumes:
+#      - type: bind
+##        source: ../../myfolder
+#        source: /images
+#        target: /winrussia/app/images
+    restart: always
+    env_file:
+      - .env
+
+  bot:
+    build: ../aiogram_app/
+    restart: on-failure
+    ports:
+      - "81:81"

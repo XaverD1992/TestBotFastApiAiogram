@@ -1,0 +1,1 @@
+from fastapi_app.api_v1.controllers.product import product_router
