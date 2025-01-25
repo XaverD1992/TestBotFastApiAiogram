@@ -5,6 +5,9 @@ from fastapi_app.crud.product import get_product, update_product, create_product
 
 async def collect_data(artikul, session):
     print("старт сбора")
+    await wb_client.initialize(
+        base_url="https://card.wb.ru",
+    )
     product = await wb_client.get_product(artikul)
     validate_product(product)
     existing_product = await get_product(session, product["artikul"])

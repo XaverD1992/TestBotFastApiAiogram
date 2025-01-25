@@ -12,7 +12,7 @@ class ProductBase(BaseSchema):
 
 
 class ProductRead(ProductBase):
-    """Pydantic schema representing a columnist."""
+    """Pydantic schema representing a product."""
 
     name: str
     price: int

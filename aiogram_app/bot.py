@@ -1,7 +1,8 @@
 import asyncio
+import json
 import os
 
-import aiohttp
+from aiohttp import ClientSession
 from dotenv import load_dotenv
 
 from aiogram import Bot, Dispatcher, types, F
@@ -25,10 +26,19 @@ async def cmd_start(message: types.Message):
 
 @dp.message(F.text.lower() == "получить данные по товару")
 async def with_puree(message: types.Message):
-    async with aiohttp.ClientSession() as session:
-        async with session.get("https://backend:80/api/v1/products") as response:
+    await message.answer("Введите артикул товара")
+
+
+@dp.message(lambda message: message.text.isdigit())
+async def process_product_code(message: types.Message):
+    artikul = str(message.text)
+    async with ClientSession() as session:
+        async with session.post("http://backend:8000/api/v1/products", json={"artikul": artikul}
+                ) as response:
             data = await response.json()
-    await message.answer(data)
+
+    await message.answer(json.dumps(data, indent=4, ensure_ascii=False,))
+
 
 async def main():
     await dp.start_polling(bot)

@@ -10,8 +10,6 @@ class Settings(BaseSettings):
     POSTGRES_USER: str = "postgres"
     POSTGRES_PASSWORD: str = "postgres"
     POSTGRES_DB: str = "postgres"
-    REDIS_HOST: str = "redis"
-    REDIS_PORT: int = 6379
     API_V1_PREFIX: str = "/api/v1"
 
     @property

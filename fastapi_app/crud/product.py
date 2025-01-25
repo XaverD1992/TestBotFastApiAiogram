@@ -3,12 +3,6 @@ from sqlalchemy import func
 from fastapi_app.models.product import Product
 
 
-# async def is_product_created(session: AsyncSession, artikul: int) -> bool:
-#     product = await session.get(Product, artikul)
-#     if product:
-#         return True
-#     return False
-
 async def get_product(session: AsyncSession, artikul: int) -> Product | None:
     return await session.get(Product, artikul)
 

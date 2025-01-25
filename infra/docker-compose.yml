@@ -12,28 +12,14 @@ services:
       - .env
     restart: always
 
-  redis:
-    image: redis:latest
-    container_name: redis_container
-    volumes:
-      - redis_data:/data
-#    ports:
-#      - "6379:6379"
-
   backend:
     container_name: fastapi_container
     build: ../
+    command: ["/wb/infra/app.sh"]
     depends_on:
       - database
     ports:
-      - "80:80"
-#    volumes:
-#      - backend_static:/winrussia/app/static
-#    volumes:
-#      - type: bind
-##        source: ../../myfolder
-#        source: /images
-#        target: /winrussia/app/images
+      - "80:8000"
     restart: always
     env_file:
       - .env
@@ -41,5 +27,9 @@ services:
   bot:
     build: ../aiogram_app/
     restart: on-failure
+    depends_on:
+      - backend
     ports:
       - "81:81"
+    env_file:
+        - .env

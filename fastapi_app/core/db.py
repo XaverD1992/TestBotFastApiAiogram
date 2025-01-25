@@ -1,10 +1,5 @@
-"""
-This module provides configurations for database connection.
+"""This module provides configurations for database connection."""
 
-"""
-
-from fastapi import Depends
-# from fastapi_users_db_sqlalchemy import SQLAlchemyUserDatabase
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
     async_sessionmaker,
@@ -12,7 +7,6 @@ from sqlalchemy.ext.asyncio import (
 )
 
 from fastapi_app.core.config import settings
-# from app.models.user import User
 
 
 engine = create_async_engine(settings.DATABASE_URL)

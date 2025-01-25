@@ -6,18 +6,9 @@ from sqlalchemy.orm import (
 
 
 class Base(DeclarativeBase):
-    """Base class for declarative models.
-
-    Attributes:
-        id (Mapped[int]): Primary key column.
-    """
+    """Base class for declarative models."""
 
     __abstract__ = True
-
-    # id: Mapped[int] = mapped_column(
-    #     primary_key=True,
-    #     autoincrement=True,
-    # )
 
     @declared_attr.directive
     def __tablename__(cls) -> str:
