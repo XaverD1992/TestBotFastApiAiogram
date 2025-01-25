@@ -13,11 +13,7 @@ COPY pyproject.toml poetry.lock ./
 
 RUN poetry install
 
-#RUN pip3 install aiohttp
-#RUN pip3 install python-dotenv
-#RUN pip3 install aiogram
 
 COPY ./ ./
 
-#CMD ["python", "bot.py"]
 CMD ["/bin/bash", "-c", "python bot.py"]
